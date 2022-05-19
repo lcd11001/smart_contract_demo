@@ -20,6 +20,7 @@ const deploy = async () =>
         .send({ gas: '1000000', from: accounts[0] });
 
     console.log('Contract deployed to ', result.options.address);
+    console.log(`Scan contract at ${process.env.RINKEBY_SCAN}/${result.options.address}`);
 
     provider.engine.stop();
 };
