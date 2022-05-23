@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "mocha -- test/Lottery.test.js",
     "compile": "node compile.js",
     "deploy": "env-cmd node deploy.js"
@@ -14,10 +16,32 @@
     "@truffle/hdwallet-provider": "^2.0.8",
     "ganache": "^7.2.0",
     "mocha": "^10.0.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-scripts": "^5.0.1",
     "solc": "^0.8.14-fixed",
     "web3": "^1.7.3"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
+
 }
