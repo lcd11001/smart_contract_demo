@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha -- test/Lottery.test.js",
     "compile": "node compile.js",
     "deploy": "env-cmd node deploy.js"
   },
@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.0.8",
-    "ganache": "^7.1.0",
+    "ganache": "^7.2.0",
     "mocha": "^10.0.0",
     "solc": "^0.8.14-fixed",
     "web3": "^1.7.3"

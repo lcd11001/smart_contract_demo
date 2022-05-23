@@ -45,12 +45,12 @@ describe('Inbox testing', () =>
     {
         const message = await inbox.methods.message().call();
         assert.equal(message, INIT_MESSAGE);
-    })
+    });
 
     it('has update message', async () =>
     {
         await inbox.methods.setMessage(NEW_MESSAGE).send({ from: accounts[0] });
         const message = await inbox.methods.message().call();
         assert.equal(message, NEW_MESSAGE);
-    })
+    });
 });
