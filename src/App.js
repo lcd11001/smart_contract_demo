@@ -4,7 +4,7 @@ import lottery from "./Utils/lottery";
 
 function App()
 {
-    console.log('web3.version', web3.version);
+    // console.log('web3.version', web3.version);
 
     const [manager, setManager] = useState('')
     const [players, setPlayers] = useState([])
@@ -81,7 +81,7 @@ function App()
             const lastWinner = await lottery.methods.getLastWinner().call({
                 from: accounts[0]
             })
-
+            
             setLastWinner(lastWinner)
 
             console.log('transaction success', transaction)
@@ -103,7 +103,7 @@ function App()
 
 
             {
-                lastWinner &&
+                !web3.utils.toBN(lastWinner).isZero() &&
                 <Fragment>
                     <hr />
                     <p>The last winner is {lastWinner}</p>
