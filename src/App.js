@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import web3 from "./Utils/w3";
 import lottery from "./Utils/lottery";
 
@@ -11,6 +11,7 @@ function App()
     const [balance, setBalance] = useState('')
     const [value, setValue] = useState(0)
     const [message, setMessage] = useState('')
+    const [lastWinner, setLastWinner] = useState('')
 
     useEffect(() =>
     {
@@ -22,6 +23,11 @@ function App()
         lottery.methods.getPlayers().call().then(players =>
         {
             setPlayers(players);
+        })
+
+        lottery.methods.getLastWinner().call().then(winner =>
+        {
+            setLastWinner(winner);
         })
 
         web3.eth.getBalance(lottery.options.address).then(balance =>
@@ -53,14 +59,15 @@ function App()
             console.log('transaction success', transaction)
             setMessage(`transaction sucess ${transaction.transactionHash}`);
         }
-        catch(err)
+        catch (err)
         {
             console.log('transaction fail', err)
             setMessage(`transaction fail ${err.message ? err.message : err}`)
         }
     }
 
-    const onPickWinnerClicked = async (e) => {
+    const onPickWinnerClicked = async (e) =>
+    {
         console.log('onPickWinnerClicked')
 
         setMessage('Waiting on picking winner ...')
@@ -71,11 +78,16 @@ function App()
             const transaction = await lottery.methods.pickWinner().send({
                 from: accounts[0]
             })
+            const lastWinner = await lottery.methods.getLastWinner().call({
+                from: accounts[0]
+            })
+
+            setLastWinner(lastWinner)
 
             console.log('transaction success', transaction)
-            setMessage(`A winner has been picked ${transaction.transactionHash}`);
+            setMessage(`A winner has been picked ${lastWinner}`);
         }
-        catch(err)
+        catch (err)
         {
             console.log('transaction fail', err)
             setMessage(`transaction fail ${err.message ? err.message : err}`)
@@ -88,9 +100,18 @@ function App()
             <h2>Lottery Contract</h2>
             <p>This contract is managed by {manager}</p>
             <p>There are currently {players.length} people entered, competing to win {web3.utils.fromWei(balance, 'ether')} ether!</p>
-            
-            <hr />
-            
+
+
+            {
+                lastWinner &&
+                <Fragment>
+                    <hr />
+                    <p>The last winner is {lastWinner}</p>
+                    <hr />
+                </Fragment>
+            }
+
+
             <form onSubmit={onSubmit}>
                 <h4>Want to try your luck?</h4>
                 <div>
@@ -102,14 +123,14 @@ function App()
                 </div>
                 <button type="submit">Enter</button>
             </form>
-            
+
             <hr />
 
             <h4>Ready to pick a winner</h4>
             <button onClick={onPickWinnerClicked}>Pick a winner</button>
 
             <hr />
-            
+
             <p>{message}</p>
         </div>
     );

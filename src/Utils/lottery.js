@@ -1,5 +1,5 @@
 import web3 from './w3'
-const address = '0x957AAC8D3d281dCDD903be1E6Fb5C72C620d60Ac';
+const address = '0xC2070C417f946De6D4eB4a2115eC6dA249E484fA';
 const abi = [
   {
     "inputs": [],
@@ -18,6 +18,21 @@ const abi = [
   },
   {
     "inputs": [],
+    "name": "getLastWinner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xf88649a1"
+  },
+  {
+    "inputs": [],
     "name": "getPlayers",
     "outputs": [
       {
@@ -30,6 +45,21 @@ const abi = [
     "type": "function",
     "constant": true,
     "signature": "0x8b5b9ccc"
+  },
+  {
+    "inputs": [],
+    "name": "lastWinner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0xfe188184"
   },
   {
     "inputs": [],
