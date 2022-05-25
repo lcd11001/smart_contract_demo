@@ -124,6 +124,11 @@ describe('Lottery testing', () =>
         // console.log('difference', difference);
         
         assert.equal(difference, Web3.utils.toWei('2', 'ether'));
+
+        const lastWinner = await lottery.methods.getLastWinner().call({
+            from: accounts[0]
+        });
+        assert.equal(lastWinner, accounts[1]);
     });
 
     it('sends money to the winner as MANAGER and resets the players array', async () =>
@@ -161,5 +166,10 @@ describe('Lottery testing', () =>
         // console.log('diffBalance + cost', total.toString());
         
         assert.equal(total, Web3.utils.toWei('2', 'ether'));
+
+        const lastWinner = await lottery.methods.getLastWinner().call({
+            from: accounts[0]
+        });
+        assert.equal(lastWinner, accounts[0]);
     });
 });
