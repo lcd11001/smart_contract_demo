@@ -1,6 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.14;
 
+contract CampaignFactory
+{
+    address[] public deployedCampaigns;
+
+    function createCampaign(uint minimum) public
+    {
+        Campaign newCampaign = new Campaign(minimum, msg.sender);
+        deployedCampaigns.push(address(newCampaign));
+    }
+
+    function getDeployedCampaigns() public view returns(address[] memory)
+    {
+        return deployedCampaigns;
+    }
+}
+
 contract Campaign 
 {
     struct Request {
@@ -25,9 +41,9 @@ contract Campaign
         _;
     }
 
-    constructor(uint minimum)
+    constructor(uint minimum,  address creator)
     {
-        manager = msg.sender;
+        manager = creator;
         minimumContribution = minimum;
     }
 
