@@ -7,13 +7,14 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "mocha -- test/Lottery.test.js",
-    "compile": "node compile.js",
-    "deploy": "env-cmd node deploy.js"
+    "compile": "node ethereum/compile.js",
+    "deploy": "env-cmd node ethereum/deploy.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.0.8",
+    "fs-extra": "^10.1.0",
     "ganache": "^7.2.0",
     "mocha": "^10.0.0",
     "react": "^18.1.0",
