@@ -6,7 +6,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "mocha -- test/Lottery.test.js",
+    "test": "mocha -- test/Campaign.test.js",
     "compile": "node ethereum/compile.js",
     "deploy": "env-cmd node ethereum/deploy.js"
   },

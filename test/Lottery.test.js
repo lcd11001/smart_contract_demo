@@ -1,5 +1,4 @@
 const assert = require('assert');
-const { cp } = require('fs');
 const ganache = require('ganache');
 const Web3 = require('web3');
 const { abi, evm } = require('../compile');
