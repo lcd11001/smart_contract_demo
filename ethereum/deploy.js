@@ -4,7 +4,10 @@ const fs = require('fs');
 const path = require('path');
 const { EOL } = require('os');
 
-const { abi, evm } = require('./compile');
+const campaignFactoryPath = path.resolve(__dirname, 'build', 'CampaignFactory.json');
+const compiledFactory = require(campaignFactoryPath);
+
+const { abi, evm } = compiledFactory;
 
 const provider = new HDWalletProvider(
     `${process.env.MNEMONIC}`,
@@ -21,7 +24,7 @@ const deploy = async () =>
 
     const result = await new web3.eth.Contract(abi)
         .deploy({ data: evm.bytecode.object })
-        .send({ gas: '1000000', from: accounts[0] });
+        .send({ gas: '3000000', from: accounts[0] });
 
     writeToFile(abi, result.options.address);
 
@@ -35,7 +38,7 @@ const writeToFile = (abi, address) =>
 {
     try
     {
-        const filePath = path.resolve(__dirname, 'src', 'Utils', 'lottery.js');
+        const filePath = path.resolve(__dirname, '..', 'src', 'Utils', 'CampaignFactory.js');
         const file = fs.openSync(filePath, 'w+');
 
         fs.writeFileSync(file, `import web3 from './w3'`, { flag: 'a+' });
