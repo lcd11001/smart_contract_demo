@@ -12,7 +12,7 @@ else
 {
     // we are on the server *OR* the user is not running metamask
     // https://medium.com/jelly-market/how-to-get-infura-api-key-e7d552dd396f
-    const provider = new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/63f8041d6a6347d7a40638accd6ca4c7");
+    const provider = new Web3.providers.HttpProvider(process.env.RINKEBY_ENDPOINT);
     web3 = new Web3(provider);
 }
 
