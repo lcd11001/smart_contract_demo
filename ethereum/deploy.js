@@ -4,7 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const { EOL } = require('os');
 
-const campaignFactoryPath = path.resolve(__dirname, 'build', 'CampaignFactory.json');
+const fileName = 'CampaignFactory';
+const campaignFactoryPath = path.resolve(__dirname, 'build', `${fileName}.json`);
 const compiledFactory = require(campaignFactoryPath);
 
 const { abi, evm } = compiledFactory;
@@ -26,7 +27,7 @@ const deploy = async () =>
         .deploy({ data: evm.bytecode.object })
         .send({ gas: '3000000', from: accounts[0] });
 
-    writeToFile(abi, result.options.address);
+    writeToFile(fileName, campaignFactoryPath, result.options.address);
 
     console.log('Contract deployed to', result.options.address);
     console.log(`Scan contract at ${process.env.RINKEBY_SCAN}/${result.options.address}`);
@@ -34,20 +35,25 @@ const deploy = async () =>
     provider.engine.stop();
 };
 
-const writeToFile = (abi, address) =>
+const writeToFile = (contractName, contractPath, address) =>
 {
     try
     {
-        const filePath = path.resolve(__dirname, '..', 'src', 'Utils', 'CampaignFactory.js');
+        const importJsonPath = path.relative(path.resolve(__dirname, 'src'), contractPath).split(path.sep).join(path.posix.sep);
+
+        const filePath = path.resolve(__dirname, 'src' ,`${contractName}.js`);
         const file = fs.openSync(filePath, 'w+');
 
-        fs.writeFileSync(file, `import web3 from './w3'`, { flag: 'a+' });
+        fs.writeFileSync(file, `import web3 from './web3'`, { flag: 'a+' });
+        fs.writeFileSync(file, EOL, { flag: 'a+' });
+
+        fs.writeFileSync(file, `import ${contractName} from '${importJsonPath}'`, { flag: 'a+' });
         fs.writeFileSync(file, EOL, { flag: 'a+' });
 
         fs.writeFileSync(file, `const address = '${address}';`, { flag: 'a+' });
         fs.writeFileSync(file, EOL, { flag: 'a+' });
 
-        fs.writeFileSync(file, `const abi = ${JSON.stringify(abi, null, 2)};`, { flag: 'a+' });
+        fs.writeFileSync(file, `const abi = JSON.parse(${contractName}.abi);`, { flag: 'a+' });
         fs.writeFileSync(file, EOL, { flag: 'a+' });
 
         fs.writeFileSync(file, `export default new web3.eth.Contract(abi, address);`, { flag: 'a+' });
