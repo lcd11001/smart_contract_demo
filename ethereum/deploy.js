@@ -53,10 +53,7 @@ const writeToFile = (contractName, contractPath, address) =>
         fs.writeFileSync(file, `const address = '${address}';`, { flag: 'a+' });
         fs.writeFileSync(file, EOL, { flag: 'a+' });
 
-        fs.writeFileSync(file, `const abi = JSON.parse(${contractName}.abi);`, { flag: 'a+' });
-        fs.writeFileSync(file, EOL, { flag: 'a+' });
-
-        fs.writeFileSync(file, `export default new web3.eth.Contract(abi, address);`, { flag: 'a+' });
+        fs.writeFileSync(file, `export default new web3.eth.Contract(${contractName}.abi, address);`, { flag: 'a+' });
         fs.writeFileSync(file, EOL, { flag: 'a+' });
 
         fs.closeSync(file);
