@@ -3,8 +3,8 @@ module.exports = {
         return [
             {
                 source: '/',
-                destination: '/show',
-                permanent: true
+                destination: '/campaigns/',
+                permanent: false
             }
         ]
     }

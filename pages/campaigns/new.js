@@ -1,8 +1,10 @@
 import React from "react";
 
-export default () =>
+const NewCampaign = () =>
 {
     return (
         <h1>New Campaign Page</h1>
     )
 }
+
+export default NewCampaign
