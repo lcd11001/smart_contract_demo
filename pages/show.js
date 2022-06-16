@@ -21,14 +21,17 @@ const Show = ({ campaigns }) =>
     return (
         <Layout>
             <h3>Open Campaigns</h3>
-            {
-                renderCampaigns()
-            }
-            <Button 
-                content="Create Campaign"
-                icon="add circle"
-                primary
-            />
+            <div>
+                <Button
+                    floated="right"
+                    content="Create Campaign"
+                    icon="add circle"
+                    primary
+                />
+                {
+                    renderCampaigns()
+                }
+            </div>
         </Layout>
     )
 }
