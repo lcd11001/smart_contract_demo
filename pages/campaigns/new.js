@@ -1,6 +1,6 @@
 import React from "react";
 
-import Layout from '../../components/layout1'
+import Layout from '../../components/layout'
 
 const NewCampaign = () =>
 {
