@@ -1,7 +1,9 @@
 import React, { useEffect, useState, Fragment, useCallback } from "react";
 import CampaignFactory from '../ethereum/src/CampaignFactory'
-import { Card } from 'semantic-ui-react'
+import { Card, Button } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
+
+import Layout from "../components/layout";
 
 const Show = ({ campaigns }) =>
 {
@@ -17,12 +19,17 @@ const Show = ({ campaigns }) =>
     }
 
     return (
-        <Fragment>
-            <h1>Show Page</h1>
+        <Layout>
+            <h3>Open Campaigns</h3>
             {
                 renderCampaigns()
             }
-        </Fragment>
+            <Button 
+                content="Create Campaign"
+                icon="add circle"
+                primary
+            />
+        </Layout>
     )
 }
 
