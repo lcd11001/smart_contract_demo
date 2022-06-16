@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment, useCallback } from "react";
 import CampaignFactory from '../../ethereum/src/CampaignFactory'
 import { Card, Button } from 'semantic-ui-react'
 
-import Layout from "../../components/layout";
+import Layout from "../../components/layout1";
 
 const CampaignsIndex = ({ campaigns }) =>
 {
