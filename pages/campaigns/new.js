@@ -1,9 +1,13 @@
 import React from "react";
 
+import Layout from '../../components/Layout'
+
 const NewCampaign = () =>
 {
     return (
-        <h1>New Campaign Page</h1>
+        <Layout>
+            <h1>New Campaign Page</h1>
+        </Layout>
     )
 }
 
