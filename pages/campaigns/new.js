@@ -10,6 +10,7 @@ const NewCampaign = () =>
 {
     const [minimum, setMinimum] = useState('0')
     const [errorMessage, setErrorMessage] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
     const onMinimumChanged = (e, data) =>
     {
@@ -19,6 +20,9 @@ const NewCampaign = () =>
     const onSubmit = async (e, data) =>
     {
         e.preventDefault()
+
+        setIsLoading(true)
+        setErrorMessage('')
 
         try
         {
@@ -35,6 +39,8 @@ const NewCampaign = () =>
         {
             setErrorMessage(err.message)
         }
+
+        setIsLoading(false)
     }
 
     return (
@@ -52,9 +58,20 @@ const NewCampaign = () =>
                     />
                 </Form.Field>
 
-                <Message error header="Oops!" content={errorMessage} />
+                <Message
+                    error
+                    header="Oops!"
+                    content={errorMessage}
+                />
 
-                <Button primary type="submit">Submit</Button>
+                <Button
+                    loading={isLoading}
+                    disabled={isLoading}
+                    primary
+                    type="submit"
+                >
+                    Submit
+                </Button>
             </Form>
         </Layout>
     )
