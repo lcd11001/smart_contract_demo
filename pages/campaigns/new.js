@@ -6,6 +6,8 @@ import Layout from '../../components/layout'
 import CampaignFatory from '../../ethereum/src/CampaignFactory'
 import web3 from '../../ethereum/src/web3'
 
+import { Router } from '../../routes'
+
 const NewCampaign = () =>
 {
     const [minimum, setMinimum] = useState('0')
@@ -34,6 +36,8 @@ const NewCampaign = () =>
                 .send({
                     from: accounts[0]
                 })
+
+            Router.pushRoute('/')
         }
         catch (err)
         {

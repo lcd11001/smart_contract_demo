@@ -26,6 +26,7 @@ const CampaignsIndex = ({ campaigns }) =>
                     content="Create Campaign"
                     icon="add circle"
                     primary
+                    style={{marginTop: '0.875em'}}
                 />
                 {
                     renderCampaigns()
