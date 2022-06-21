@@ -3,7 +3,7 @@ import Layout from "../../../components/layout";
 import { Form, Button, Message, Input } from 'semantic-ui-react'
 import Campaign from "../../../ethereum/src/Campaign";
 import web3 from "../../../ethereum/src/web3";
-import { Link } from '../../../routes'
+import { Link, Router } from '../../../routes'
 
 const RequestNew = ({ address }) =>
 {
@@ -26,11 +26,12 @@ const RequestNew = ({ address }) =>
 
         try
         {
-            const campaign = new Campaign(address)
+            const campaign = Campaign(address)
             const accounts = await web3.eth.getAccounts()
             await campaign.methods.createRequest(description, web3.utils.toWei(value, 'ether'), recipient).send({
                 from: accounts[0]
             })
+            Router.pushRoute(`/campaigns/${address}/requests`)
         }
         catch (err)
         {
@@ -42,6 +43,11 @@ const RequestNew = ({ address }) =>
 
     return (
         <Layout>
+            <Link route={`/campaigns/${address}/requests`}>
+                <a>
+                    <Button basic>Back</Button>
+                </a>
+            </Link>
             <h3>Create a Request</h3>
             <Form onSubmit={onSubmit} error={errorMessage.length !== 0}>
                 <Form.Field>
