@@ -88,7 +88,6 @@ export const getServerSideProps = async (props) =>
     const campaign = Campaign(address)
 
     const summary = await campaign.methods.getSummary().call()
-    console.log('summary', summary)
 
     return {
         props: {
