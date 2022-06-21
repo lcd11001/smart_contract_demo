@@ -28,7 +28,7 @@ const result = solc.compile(JSON.stringify(input));
 const contracts = JSON.parse(result).contracts;
 const output = contracts['Campaign.sol'];
 
-console.log(output);
+// console.log(output);
 
 fs.ensureDirSync(buildPath);
 
