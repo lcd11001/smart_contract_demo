@@ -10,7 +10,7 @@ import { Router } from '../../routes'
 
 const NewCampaign = () =>
 {
-    const [minimum, setMinimum] = useState('0')
+    const [minimum, setMinimum] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 

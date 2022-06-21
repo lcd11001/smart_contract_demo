@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Card } from "semantic-ui-react";
+import { Card, Grid } from "semantic-ui-react";
 import Layout from "../../components/layout";
 
 import Web3 from "web3";
 import Campaign from '../../ethereum/src/Campaign'
+import ContributeForm from "../../components/ContributeForm";
 
 const ShowCampaign = ({ minimumContribution, balance, requestsCount, approversCount, manager, address }) =>
 {
-    const renderInformation = () =>
+    const renderDetails = () =>
     {
         const items = [
             {
@@ -43,12 +44,26 @@ const ShowCampaign = ({ minimumContribution, balance, requestsCount, approversCo
         return <Card.Group items={items} />
     }
 
+    const renderContributeForm = () =>
+    {
+        return <ContributeForm address={address} />
+    }
+
     return (
         <Layout>
-            <h3>Campaign detail</h3>
-            {
-                renderInformation()
-            }
+            <h3>Campaign details</h3>
+            <Grid>
+                <Grid.Column width={10}>
+                    {
+                        renderDetails()
+                    }
+                </Grid.Column>
+                <Grid.Column width={6}>
+                    {
+                        renderContributeForm()
+                    }
+                </Grid.Column>
+            </Grid>
         </Layout>
     )
 }
