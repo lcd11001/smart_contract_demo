@@ -7,18 +7,19 @@
     "test": "mocha -- test/Campaign.test.js",
     "compile": "node ethereum/compile.js",
     "deploy": "env-cmd node ethereum/deploy.js",
-    "dev": "next dev"
+    "dev": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.0.9",
     "fs-extra": "^10.1.0",
-    "ganache": "^7.3.0",
+    "ganache": "^7.3.1",
     "mocha": "^10.0.0",
-    "next": "^12.1.6",
+    "next": "^12.1.7-canary.42",
+    "next-routes": "^1.4.2",
     "react": "^18.2.0",
-    "react-dom": "^18.1.0",
+    "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.1.3",
