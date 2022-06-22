@@ -51,8 +51,13 @@ contract Campaign
     {
         require(msg.value >= minimumContribution, "Minimum contribution value required");
         // approvers.push(msg.sender);
-        approvers[msg.sender] = true;
-        approversCount ++;
+
+        if (approvers[msg.sender] == false)
+        {
+            // Fixed: multiple "contribute" can increase approversCount, but can not multiple "approveRequest"
+            approvers[msg.sender] = true;
+            approversCount ++;
+        }
     }
 
     function createRequest(string memory description, uint value, address payable recipient) public restricted
