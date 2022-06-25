@@ -15,47 +15,6 @@ const RequestRow = ({ id, request, address, approversCount }) =>
     const [isLoading, setIsLoading] = useState(LOADING_BUTTON.NONE)
     const [errorMessage, setErrorMessage] = useState('')
 
-    const getRevertReason = async (txHash) =>
-    {
-
-        try
-        {
-
-            const tx = await web3.eth.getTransaction(txHash)
-
-            console.log('tx', tx)
-
-            var result = await web3.eth.call(tx, tx.blockNumber)
-
-            console.log('result', result)
-
-            result = result.startsWith('0x') ? result : `0x${result}`
-
-            if (result && result.substr(138))
-            {
-                const reason = web3.utils.toAscii(result.substr(138))
-                console.log('Revert reason:', reason)
-                // return reason
-            }
-            else
-            {
-                console.log('Cannot get reason - No return value')
-            }
-        }
-        catch (err)
-        {
-            console.log('err2', err)
-            console.log('err2.message', err.message)
-            var errData = JSON.parse(err.message.substr(err.message.indexOf('{')))
-            if (errData)
-            {
-                console.log('errData', errData)
-            }
-        }
-
-        return txHash
-    }
-
     const onApproveClicked = async (e) =>
     {
         setIsLoading(LOADING_BUTTON.APPROVE)
@@ -63,13 +22,15 @@ const RequestRow = ({ id, request, address, approversCount }) =>
         {
             const campaign = Campaign(address)
             const accounts = await web3.eth.getAccounts()
-            await campaign.methods.approveRequest(id).send({
-                from: accounts[0]
-            })
+
+            await campaign.methods.approveRequest(id)
+                .send({
+                    from: accounts[0]
+                })
         }
         catch (err)
         {
-            console.log('onApproveClicked error', err)
+            console.log('onApproveClicked error', err.message)
             setErrorMessage(err.message)
         }
         setIsLoading(LOADING_BUTTON.NONE)
@@ -85,14 +46,6 @@ const RequestRow = ({ id, request, address, approversCount }) =>
             await campaign.methods.finalizeRequest(id).send(
                 {
                     from: accounts[0],
-                },
-                async (error, transactionHash) =>
-                {
-                    console.log('callback error', error, 'transactionHash', transactionHash)
-                    if (transactionHash)
-                    {
-                        await getRevertReason(transactionHash)
-                    }
                 }
             )
         }
