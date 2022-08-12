@@ -82,7 +82,7 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: 500px;
 }
 
 .card:hover,
@@ -108,6 +108,36 @@
   margin-left: 0.5rem;
 }
 
+.nobullet {
+  list-style-type: none;
+}
+
+.media {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  user-select: none;
+}
+
+.mediaLeft {
+  margin-right: 10px;
+}
+
+.mediaObject {
+  margin: auto;
+}
+
+.mediaBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.mediaHeading {
+  margin: auto;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
@@ -116,13 +146,16 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
   .card,
   .footer {
     border-color: #222;
   }
+
   .code {
     background: #111;
   }
+
   .logo img {
     filter: invert(1);
   }
