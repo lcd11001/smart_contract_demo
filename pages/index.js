@@ -1,42 +1,18 @@
 import useSWR from 'swr'
 import styles from '../styles/Home.module.css'
-import { getVideos } from '../utils'
-import MyApp from './_app'
+import * as API from '../utils'
 
+import SearchBar from '../components/search_bar'
 
-
-const App = (props) =>
+const App = () =>
 {
-  console.log('props', props)
+  const {data, isError, isLoading} = API.getVideos({ q: 'surfboards', maxResults: 10 })
+
   return (
-    <div>Hi! {props.name}</div>
-  )
-}
-
-export default function Home()
-{
-  const { data, isLoading, isError } = getVideos()
-
-  if (isError)
-  {
-    return (
-      <div className={styles.container}>
-        error: {isError}
-      </div>
-    )
-  }
-
-  if (isLoading)
-  {
-    return (
-      <div className={styles.container}>
-        loading...
-      </div>
-    )
-  }
-  return (
-    <div className={styles.container}>
-      <App name={data.key} />
+    <div>
+      <SearchBar />
     </div>
   )
 }
+
+export default App
