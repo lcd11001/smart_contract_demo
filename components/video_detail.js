@@ -7,7 +7,7 @@ const VideoDetail = ({ video }) =>
     if (!video) 
     {
         return (
-            <div>no video selected</div>
+            <div></div>
         )
     }
     const {

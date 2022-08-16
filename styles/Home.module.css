@@ -150,6 +150,23 @@
   margin: auto;
 }
 
+.searchBar {
+  margin: 20px;
+  text-align: center;
+}
+
+.searchBar input {
+  width: 75%;
+}
+
+.videoDetail .details {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

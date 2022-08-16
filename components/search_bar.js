@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import styles from '../styles/Home.module.css'
 
-const SearchBar = () =>
+const SearchBar = ({ defaultValue, onSearchChanged }) =>
 {
     const [text, SetText] = useState('')
 
@@ -9,10 +10,24 @@ const SearchBar = () =>
         SetText(e.target.value)
     }
 
+    const onInputSubmit = (e) =>
+    {
+        if (e.key === 'Enter')
+        {
+            onSearchChanged && onSearchChanged(e.target.value)
+        }
+    }
+
+    useEffect(() =>
+    {
+        SetText(defaultValue)
+    }, [defaultValue])
+
     return (
-        <div>
+        <div className={styles.searchBar}>
             <input
                 onChange={onInputChanged}
+                onKeyDown={onInputSubmit}
                 value={text}
             />
         </div>

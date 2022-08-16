@@ -17,7 +17,7 @@ const VideoListItem = ({ video, onVideoSelected }) =>
     } = video.snippet
 
     return (
-        <li className={styles.card} onClick={() => onVideoSelected(video)}>
+        <li className={styles.card} onClick={() => onVideoSelected && onVideoSelected(video)}>
             <div className={styles.media}>
                 <div className={styles.mediaLeft}>
                     <img className={styles.mediaObject} src={url} width={width} height={height} />
