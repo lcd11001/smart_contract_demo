@@ -3,9 +3,8 @@ import { decode } from 'html-entities'
 
 import styles from '../styles/Home.module.css'
 
-const VideoListItem = ({ video }) =>
+const VideoListItem = ({ video, onVideoSelected }) =>
 {
-    console.log('video', video)
     const {
         title,
         thumbnails: {
@@ -18,7 +17,7 @@ const VideoListItem = ({ video }) =>
     } = video.snippet
 
     return (
-        <li className={styles.card}>
+        <li className={styles.card} onClick={() => onVideoSelected(video)}>
             <div className={styles.media}>
                 <div className={styles.mediaLeft}>
                     <img className={styles.mediaObject} src={url} width={width} height={height} />

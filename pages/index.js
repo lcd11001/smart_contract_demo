@@ -4,11 +4,19 @@ import * as API from '../utils'
 import SearchBar from '../components/search_bar'
 import VideoList from '../components/video_list'
 import VideoDetail from '../components/video_detail'
+import { useState } from 'react'
 
 
 const App = () =>
 {
-    const { data, isError, isLoading } = API.getVideos({ q: 'surfboards', maxResults: 10 })
+    const [selectedVideo, SetSelectedVideo] = useState(null)
+    const { data, isError, isLoading } = API.getVideos(
+        { q: 'surfboards', maxResults: 10 },
+        (data, key, config) =>
+        {
+            SetSelectedVideo(data.items[0])
+        }
+    )
 
     if (isLoading)
     {
@@ -27,8 +35,8 @@ const App = () =>
     return (
         <div>
             <SearchBar />
-            <VideoDetail video={data.items[0]} />
-            <VideoList videos={data.items} />
+            <VideoDetail video={selectedVideo} />
+            <VideoList videos={data.items} onVideoSelected={SetSelectedVideo} />
         </div>
     )
 }
