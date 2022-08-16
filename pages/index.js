@@ -13,7 +13,7 @@ const App = () =>
     const [videos, SetVideos] = useState([])
     const [term, SetTerm] = useState({})
 
-    const { data, isError, isLoading } = API.getVideos(
+    const { data, isError, isLoading, error } = API.getVideos(
         term,
         (data, key, config) =>
         {
@@ -45,7 +45,7 @@ const App = () =>
     if (isError)
     {
         return (
-            <div>error</div>
+            <div>{JSON.stringify(error, null, 2)}</div>
         )
     }
 

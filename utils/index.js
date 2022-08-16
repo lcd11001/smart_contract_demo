@@ -19,6 +19,7 @@ export const getVideos = (jsonParams = {}, resolve = null, reject = null) =>
     return {
         data,
         isLoading: !error && !data,
-        isError: error || data?.hasOwnProperty('error')
+        isError: error || data?.hasOwnProperty('error'),
+        error: (data && data.error) || 'unknown error'
     }
 }
