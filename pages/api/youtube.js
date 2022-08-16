@@ -4,7 +4,7 @@ export default function handler(req, res)
 {
     const query = req.query;
     // console.log('api/youtube', query)
-    YTSearch(process.env.API_KEY, query, (error, response) =>
+    YTSearch(process.env.YOUTUBE_SEARCH_API_KEY, query, (error, response) =>
     {
         // console.log('error', error)
         // console.log('response', JSON.stringify(response, null, 2))
