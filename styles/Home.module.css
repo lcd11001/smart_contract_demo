@@ -69,14 +69,14 @@
 
 .grid {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   align-items: flex-start;
   justify-content: center;
-  /* max-width: 800px; */
+  width: 80vw;
 }
 
 .itemTop {
-  grid-column: 1 / 5;
+  grid-column: 1 / 6;
 }
 
 .itemLeft {
@@ -84,7 +84,7 @@
 }
 
 .itemRight {
-  grid-column: 4 / 5;
+  grid-column: 4 / 6;
 }
 
 .card {
@@ -96,7 +96,7 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 500px;
+  min-width: 400px;
 }
 
 .card:first-child {
@@ -192,13 +192,6 @@
   padding: 10px;
 }
 
-
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}
 
 @media (prefers-color-scheme: dark) {
 
