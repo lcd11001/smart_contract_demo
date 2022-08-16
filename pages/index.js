@@ -50,10 +50,18 @@ const App = () =>
     }
 
     return (
-        <div>
-            <SearchBar defaultValue={term.q} onSearchChanged={videoSearch} />
-            <VideoDetail video={selectedVideo} />
-            <VideoList videos={videos} onVideoSelected={SetSelectedVideo} />
+        <div className={styles.main}>
+            <div className={styles.grid}>
+                <div className={styles.itemTop}>
+                    <SearchBar defaultValue={term.q} onSearchChanged={videoSearch} />
+                </div>
+                <div className={styles.itemLeft}>
+                    <VideoDetail video={selectedVideo} />
+                </div>
+                <div className={styles.itemRight}>
+                    <VideoList videos={videos} onVideoSelected={SetSelectedVideo} />
+                </div>
+            </div>
         </div>
     )
 }

@@ -42,18 +42,20 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: large;
+  font-weight: bold;
 }
 
 .title,
 .description {
-  text-align: center;
+  text-align: left;
 }
 
 .description {
-  margin: 4rem 0;
+  margin: 1rem 0;
   line-height: 1.5;
-  font-size: 1.5rem;
+  font-size: small;
+  font-weight: lighter;
 }
 
 .code {
@@ -66,11 +68,23 @@
 }
 
 .grid {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  align-items: flex-start;
   justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+  /* max-width: 800px; */
+}
+
+.itemTop {
+  grid-column: 1 / 5;
+}
+
+.itemLeft {
+  grid-column: 1 / 4;
+}
+
+.itemRight {
+  grid-column: 4 / 5;
 }
 
 .card {
@@ -83,6 +97,10 @@
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 500px;
+}
+
+.card:first-child {
+  margin-top: 0;
 }
 
 .card:hover,
@@ -110,6 +128,7 @@
 
 .nobullet {
   list-style-type: none;
+  margin: 0;
 }
 
 .media {
@@ -124,7 +143,7 @@
 }
 
 .mediaObject {
-  margin: auto;
+  margin: 0;
 }
 
 .mediaBody {
@@ -135,19 +154,27 @@
 }
 
 .mediaHeading {
-  margin: auto;
+  margin: 0;
 }
 
 .videoDetail {
-  margin: auto;
+  margin: 0;
 }
 
 .reponsive16x9 {
-  margin: auto;
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
 }
 
 .responsiveItem {
-  margin: auto;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
 }
 
 .searchBar {
@@ -157,13 +184,12 @@
 
 .searchBar input {
   width: 75%;
+  padding: 10px;
 }
 
 .videoDetail .details {
   margin-top: 10px;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
 }
 
 
