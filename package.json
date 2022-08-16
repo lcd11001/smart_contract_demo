@@ -11,7 +11,7 @@
   "dependencies": {
     "html-entities": "^2.3.3",
     "lodash": "^4.17.21",
-    "next": "12.2.4",
+    "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "redux": "^4.2.0",
@@ -19,7 +19,7 @@
     "youtube-api-v3-search": "^1.2.1"
   },
   "devDependencies": {
-    "eslint": "8.21.0",
-    "eslint-config-next": "12.2.4"
+    "eslint": "8.22.0",
+    "eslint-config-next": "12.2.5"
   }
 }
