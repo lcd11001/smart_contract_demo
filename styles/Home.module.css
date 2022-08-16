@@ -138,6 +138,18 @@
   margin: auto;
 }
 
+.videoDetail {
+  margin: auto;
+}
+
+.reponsive16x9 {
+  margin: auto;
+}
+
+.responsiveItem {
+  margin: auto;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
